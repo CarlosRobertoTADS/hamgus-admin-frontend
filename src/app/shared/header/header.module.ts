@@ -10,7 +10,6 @@ import { MatBadgeModule } from '@angular/material/badge';
 
 import { HeaderComponent } from './containers';
 import { UserComponent, EmailComponent } from './components';
-import { NotificationsComponent } from './components/notifications/notifications.component';
 import { SearchComponent } from './components/search/search.component';
 import { ShortNamePipe } from './pipes';
 
@@ -19,7 +18,6 @@ import { ShortNamePipe } from './pipes';
     HeaderComponent,
     UserComponent,
     EmailComponent,
-    NotificationsComponent,
     SearchComponent,
     ShortNamePipe
   ],

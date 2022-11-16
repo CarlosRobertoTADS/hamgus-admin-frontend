@@ -6,7 +6,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "angular-material-admin": {
+    "hamgus-admin": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -28,7 +28,6 @@
             ],
             "styles": [
               "./node_modules/font-awesome/scss/font-awesome.scss",
-              "./node_modules/ngx-toastr/toastr.css",
               "src/custom-theme.scss"
             ],
             "scripts": []
@@ -74,22 +73,22 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "angular-material-admin:build"
+            "browserTarget": "hamgus-admin:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "angular-material-admin:build:production"
+              "browserTarget": "hamgus-admin:build:production"
             },
             "hmr": {
               "hmr": true,
-              "browserTarget": "angular-material-admin:build:hmr"
+              "browserTarget": "hamgus-admin:build:hmr"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "angular-material-admin:build"
+            "browserTarget": "hamgus-admin:build"
           }
         },
         "lint": {
@@ -108,5 +107,5 @@
       }
     }
   },
-  "defaultProject": "angular-material-admin"
+  "defaultProject": "hamgus-admin"
 }

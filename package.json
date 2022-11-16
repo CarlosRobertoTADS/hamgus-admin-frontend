@@ -1,16 +1,16 @@
 {
-  "name": "angular-material-admin",
-  "version": "1.0.6",
+  "name": "hamgus-admin",
+  "version": "1.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build --prod",
+    "build:prod": "ng build --prod",
     "lint": "ng lint",
     "hmr": "ng serve --configuration hmr"
   },
   "private": true,
   "dependencies": {
-    "@agm/core": "^1.1.0",
     "@angular/animations": "^11.2.13",
     "@angular/cdk": "^11.2.12",
     "@angular/common": "~11.2.13",
@@ -21,13 +21,8 @@
     "@angular/platform-browser": "~11.2.13",
     "@angular/platform-browser-dynamic": "~11.2.13",
     "@angular/router": "~11.2.13",
-    "apexcharts": "3.26.2",
-    "echarts": "5.1.1",
+    "firebase": "^9.14.0",
     "font-awesome": "^4.7.0",
-    "ng-apexcharts": "1.5.9",
-    "ngx-echarts": "6.0.1",
-    "ngx-toastr": "13.2.1",
-    "ngx-trend": "6.1.1",
     "rxjs": "7.0.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.3"

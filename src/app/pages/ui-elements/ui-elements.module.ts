@@ -5,35 +5,17 @@ import { MatCardModule } from '@angular/material/card';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { NgApexchartsModule } from 'ng-apexcharts';
-import { AgmCoreModule } from '@agm/core';
 
 import {
-  DashedLineChartComponent,
-  HeatmapChartComponent,
-  IconsPageComponent,
-  LineChartComponent,
-  PieChartComponent
+  IconsPageComponent
 } from './components';
-import {
-  ChartsPageComponent,
-  MapPageComponent
-} from './containers';
 import { UiElementsRoutingModule } from './ui-elements-routing.module';
 import { SharedModule } from '../../shared/shared.module';
-import { ChartsService } from './services';
 import { DashboardModule } from '../dashboard/dashboard.module';
-import { googleMapKey } from './consts';
 
 @NgModule({
   declarations: [
-    IconsPageComponent,
-    ChartsPageComponent,
-    MapPageComponent,
-    LineChartComponent,
-    DashedLineChartComponent,
-    PieChartComponent,
-    HeatmapChartComponent
+    IconsPageComponent
   ],
   imports: [
     CommonModule,
@@ -42,17 +24,11 @@ import { googleMapKey } from './consts';
     MatCardModule,
     MatTabsModule,
     MatIconModule,
-    NgApexchartsModule,
-    AgmCoreModule,
-    AgmCoreModule.forRoot({
-      apiKey: googleMapKey
-    }),
     MatToolbarModule,
     SharedModule,
     DashboardModule,
   ],
   providers: [
-    ChartsService
   ]
 })
 export class UiElementsModule { }

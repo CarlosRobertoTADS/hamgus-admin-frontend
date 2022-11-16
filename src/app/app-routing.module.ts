@@ -23,12 +23,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     loadChildren: () => import('./pages/tables/tables.module').then(m => m.TablesModule)
   },
-  {
-    path: 'notification',
-    pathMatch: 'full',
-    canActivate: [AuthGuard],
-    loadChildren: () => import('./pages/notification/notification.module').then(m => m.NotificationModule)
-  },
+  
   {
     path: 'ui',
     canActivate: [AuthGuard],

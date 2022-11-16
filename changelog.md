@@ -1,6 +1,6 @@
 # Changelog
 
-## [1.0.6] - 07/09/2021
+## [1.0.0] - 07/09/2021
 ### Updated
 - Added MIT License
 
