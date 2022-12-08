@@ -18,6 +18,12 @@ const routes: Routes = [
     loadChildren: () => import('./pages/typography/typography.module').then(m => m.TypographyModule)
   },
   {
+    path: 'establishments',
+    pathMatch: 'full',
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./pages/establishments/establishments.module').then(m => m.EstablishmentsModule)
+  },
+  {
     path: 'tables',
     pathMatch: 'full',
     canActivate: [AuthGuard],
