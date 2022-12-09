@@ -2,6 +2,7 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { EstablishmentsServiceService } from '../services/establishments-service.service';
 
 export interface UserData {
   id: string;
@@ -48,19 +49,22 @@ const NAMES: string[] = [
   templateUrl: './establishments.component.html',
   styleUrls: ['./establishments.component.css']
 })
-export class EstablishmentsComponent implements AfterViewInit {
+export class EstablishmentsComponent implements AfterViewInit, OnInit {
   displayedColumns: string[] = ['id', 'name', 'progress', 'fruit'];
   dataSource: MatTableDataSource<UserData>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor() {
+  constructor(private establishmentService:EstablishmentsServiceService) {
     // Create 100 users
     const users = Array.from({length: 100}, (_, k) => createNewUser(k + 1));
 
     // Assign the data to the data source for the table to render
     this.dataSource = new MatTableDataSource(users);
+  }
+  ngOnInit(): void {
+    // console.log(this.establishmentService.GetEstablishmentsList())
   }
 
   ngAfterViewInit() {
