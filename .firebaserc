@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "admin-hamgus"
+  },
+  "targets": {
+    "admin-hamgus": {
+      "hosting": {
+        "hamgus-admin": [
+          "admin-hamgus"
+        ]
+      }
+    }
   }
 }

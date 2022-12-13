@@ -16,6 +16,9 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+              "rxjs-compat"
+            ],
             "outputPath": "dist",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -99,7 +102,13 @@
         },
         "deploy": {
           "builder": "@angular/fire:deploy",
-          "options": {}
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "hamgus-admin:build:production",
+            "firebaseProject": "admin-hamgus",
+            "firebaseHostingSite": "admin-hamgus"
+          }
         }
       }
     }

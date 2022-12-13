@@ -2,6 +2,8 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Observable } from 'rxjs';
+import { EstablishmentModel } from 'src/app/models/establishment';
 import { EstablishmentsServiceService } from '../services/establishments-service.service';
 
 export interface UserData {
@@ -50,6 +52,9 @@ const NAMES: string[] = [
   styleUrls: ['./establishments.component.css']
 })
 export class EstablishmentsComponent implements AfterViewInit, OnInit {
+
+  establishments: Observable<EstablishmentModel[]>;
+
   displayedColumns: string[] = ['id', 'name', 'progress', 'fruit'];
   dataSource: MatTableDataSource<UserData>;
 
@@ -64,8 +69,9 @@ export class EstablishmentsComponent implements AfterViewInit, OnInit {
     this.dataSource = new MatTableDataSource(users);
   }
   ngOnInit(): void {
-    // console.log(this.establishmentService.GetEstablishmentsList())
   }
+
+  
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
