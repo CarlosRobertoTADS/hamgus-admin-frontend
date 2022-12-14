@@ -133,13 +133,6 @@ $ama-warn:    mat.define-palette($ama-pink);
 $ama-theme: mat.define-light-theme($ama-primary, $ama-accent, $ama-warn);
 @include mat.all-component-themes($ama-theme);
 
-button.mat-menu-item {
-  font-size: 16px;
-}
-
-button.mat-menu-item:hover:not([disabled]), .mat-menu-item.cdk-program-focused:not([disabled]), .mat-menu-item.cdk-keyboard-focused:not([disabled]), .mat-menu-item-highlighted:not([disabled]) {
-  font-size: 16px;
-}
 
 mat-select.mat-select {
   width: auto;
@@ -220,9 +213,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   line-height: normal;
 }
 
-button.mat-fab .mat-button-wrapper {
-  padding: 0;
-}
 
 .mat-card {
   color: $card-font-color;
@@ -312,9 +302,6 @@ button.mat-mini-fab {
   width: 36px;
 }
 
-div.mat-menu-panel {
-  margin-top: 20px;
-}
 
 .fa {
   font-size: 1.5em;

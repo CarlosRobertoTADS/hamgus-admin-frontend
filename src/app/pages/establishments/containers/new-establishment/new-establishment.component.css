@@ -1,0 +1,13 @@
+.select{
+    border: none;
+}
+.form-case{
+    display: grid;
+    max-width: 600px;
+    text-align-last: center;
+    margin-left: inherit;
+}
+
+.button-submit{
+    margin-bottom: 50px;
+}

@@ -19,7 +19,6 @@ const routes: Routes = [
   },
   {
     path: 'establishments',
-    pathMatch: 'full',
     canActivate: [AuthGuard],
     loadChildren: () => import('./pages/establishments/establishments.module').then(m => m.EstablishmentsModule)
   },

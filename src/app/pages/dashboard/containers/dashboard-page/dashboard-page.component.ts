@@ -25,14 +25,16 @@ export class DashboardPageComponent {
   public supportRequestData$: Observable<SupportRequestData[]>;
   public visitsChartData$: Observable<VisitsChartData>;
   public projectsStatsData$: Observable<ProjectStatData>;
-
+  data:any;
   constructor(private service: DashboardService) {
-    this.dailyLineChartData$ = this.service.loadDailyLineChartData();
-    this.performanceChartData$ = this.service.loadPerformanceChartData();
-    this.revenueChartData$ = this.service.loadRevenueChartData();
-    this.serverChartData$ = this.service.loadServerChartData();
-    this.supportRequestData$ = this.service.loadSupportRequestData();
-    this.visitsChartData$ = this.service.loadVisitsChartData();
-    this.projectsStatsData$ = this.service.loadProjectsStatsData();
+    // this.dailyLineChartData$ = this.service.loadDailyLineChartData();
+    // this.performanceChartData$ = this.service.loadPerformanceChartData();
+    // this.revenueChartData$ = this.service.loadRevenueChartData();
+    // this.serverChartData$ = this.service.loadServerChartData();
+    // this.supportRequestData$ = this.service.loadSupportRequestData();
+    // this.visitsChartData$ = this.service.loadVisitsChartData();
+    // this.projectsStatsData$ = this.service.loadProjectsStatsData();
+    this.data = [{'name':'a','age':20},{'name':'b','age':30} ]
+    console.log(this.data )
   }
 }

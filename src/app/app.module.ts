@@ -16,8 +16,10 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
-import { environment } from 'src/environments/environment';
-import { EstablishmentsServiceService } from './pages/establishments/services/establishments-service.service';
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideFirestore,getFirestore } from '@angular/fire/firestore';
+import { EstablishmentsModule } from './pages/establishments/establishments.module';
 
 
 @NgModule({
@@ -31,15 +33,17 @@ import { EstablishmentsServiceService } from './pages/establishments/services/es
     AuthModule,
     DashboardModule,
     BrowserAnimationsModule,
+    EstablishmentsModule,
     RouterModule,
     AppRoutingModule,
     MatCardModule,
     MatButtonModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
     AngularFirestoreModule,
     AngularFireStorageModule,
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideFirestore(() => getFirestore())
   ],
   providers: [],
   bootstrap: [AppComponent]

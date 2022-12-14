@@ -10,17 +10,18 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatTableModule} from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
-import { EstablishmentsServiceService } from './services/establishments-service.service';
-import { FirestoreModule } from '@angular/fire/firestore';
-import { AngularFireModule } from '@angular/fire/compat';
-import { AngularFireAuthModule } from '@angular/fire/compat/auth';
-import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
-import { AngularFireStorageModule } from '@angular/fire/compat/storage';
-import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
-import { environment } from 'src/environments/environment';
+import { EstablishmentsService } from './services/establishments.service';
+import { NewEstablishmentComponent } from './containers/new-establishment/new-establishment.component';
+import { EstablishmentDetailComponent } from './containers/establishment-detail/establishment-detail.component';
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { ReactiveFormsModule } from '@angular/forms';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
-  declarations: [EstablishmentsComponent],
+  declarations: [EstablishmentsComponent, NewEstablishmentComponent, EstablishmentDetailComponent],
   imports: [
     CommonModule,
     EstablishmentsRoutingModule,
@@ -31,14 +32,15 @@ import { environment } from 'src/environments/environment';
     MatFormFieldModule,
     MatTableModule,
     MatInputModule,
-    FirestoreModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireAuthModule,
-    AngularFirestoreModule,
-    AngularFireStorageModule,
-    AngularFireDatabaseModule
+    MatButtonModule,
+    MatIconModule,
+    MatMenuModule,
+    MatProgressSpinnerModule,
+    ReactiveFormsModule,
+    MatSelectModule
+
   ],
-  providers: [EstablishmentsServiceService],
+  providers: [],
 
 })
 export class EstablishmentsModule { }

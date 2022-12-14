@@ -14,4 +14,6 @@ export interface EstablishmentModel {
     uf: string;
     urlImage: string;
     zipcode: number;
+    dateCreated: Date;
+    cnpj: number;
 }

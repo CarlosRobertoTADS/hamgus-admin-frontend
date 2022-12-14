@@ -1,81 +1,67 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { EstablishmentModel } from 'src/app/models/establishment';
-import { EstablishmentsServiceService } from '../services/establishments-service.service';
-
-export interface UserData {
-  id: string;
-  name: string;
-  progress: string;
-  fruit: string;
-}
-
-/** Constants used to fill up our data base. */
-const FRUITS: string[] = [
-  'blueberry',
-  'lychee',
-  'kiwi',
-  'mango',
-  'peach',
-  'lime',
-  'pomegranate',
-  'pineapple',
-];
-const NAMES: string[] = [
-  'Maia',
-  'Asher',
-  'Olivia',
-  'Atticus',
-  'Amelia',
-  'Jack',
-  'Charlotte',
-  'Theodore',
-  'Isla',
-  'Oliver',
-  'Isabella',
-  'Jasper',
-  'Cora',
-  'Levi',
-  'Violet',
-  'Arthur',
-  'Mia',
-  'Thomas',
-  'Elizabeth',
-];
+import { HeadquartersModel } from 'src/app/models/headquarters';
+import { __await } from 'tslib';
+import { User } from '../../auth/models';
+import { EstablishmentsService } from '../services/establishments.service';
 
 @Component({
   selector: 'app-establishments',
   templateUrl: './establishments.component.html',
   styleUrls: ['./establishments.component.css']
 })
-export class EstablishmentsComponent implements AfterViewInit, OnInit {
-
-  establishments: Observable<EstablishmentModel[]>;
-
-  displayedColumns: string[] = ['id', 'name', 'progress', 'fruit'];
-  dataSource: MatTableDataSource<UserData>;
-
+export class EstablishmentsComponent implements OnInit {
+  headquarters:Observable<HeadquartersModel[]>;
+  establishmentsObserver:Observable<EstablishmentModel[]>;
+  establishments:EstablishmentModel[];
+  displayedColumns: string[] = ['id', 'name', 'district', 'city', 'editar', 'excluir','desativar'];
+  dataSource: MatTableDataSource<EstablishmentModel>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-
-  constructor(private establishmentService:EstablishmentsServiceService) {
+  loading:boolean = true;
+  // dataLoaded:boolean = false;
+  // data:any;
+  constructor(private establishmentService:EstablishmentsService, private router:Router, private route:ActivatedRoute) {
     // Create 100 users
-    const users = Array.from({length: 100}, (_, k) => createNewUser(k + 1));
+    // const users = Array.from({length: 100}, (_, k) => createNewUser(k + 1));
 
     // Assign the data to the data source for the table to render
-    this.dataSource = new MatTableDataSource(users);
   }
   ngOnInit(): void {
+    this.loadData();
   }
 
-  
+   loadData(){
+    // this.data = [{"name":'a', "age": 20}, {'name':'b', 'age': 30}]
+    // console.log(this.data)
+    this.loading = true;
+    this.establishmentsObserver = this.establishmentService.getAllEstablishments();
+    this.establishmentsObserver.subscribe((resp) =>{
+      this.establishments = resp;
+      console.log(this.establishments);     
+    });
 
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+    setTimeout(()=>{                           
+      this.loadTable(this.establishments);
+  }, 3000);
+  }
+  
+  loadTable(establishment:EstablishmentModel[]){
+    this.dataSource = new MatTableDataSource(establishment);
+    setTimeout(()=>{                           
+      this.loadPaginator(this.dataSource);
+  }, 1000);
+    this.loading = false;
+  }
+
+  loadPaginator(datasource){
+    datasource.paginator = this.paginator;
+    datasource.sort = this.sort;
   }
 
   applyFilter(event: Event) {
@@ -86,20 +72,23 @@ export class EstablishmentsComponent implements AfterViewInit, OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
+
+  newEstablishment(){
+    this.router.navigate(['new'], {relativeTo:this.route});
+  }
+
+  edit(id:number){
+    this.router.navigate(['detail'], {relativeTo:this.route});
+  }
+
+  delete(id:number){
+
+  }
+
+  deactivate(id:number){
+
+  }
 }
 
-/** Builds and returns a new User. */
-function createNewUser(id: number): UserData {
-  const name =
-    NAMES[Math.round(Math.random() * (NAMES.length - 1))] +
-    ' ' +
-    NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) +
-    '.';
 
-  return {
-    id: id.toString(),
-    name: name,
-    progress: Math.round(Math.random() * 100).toString(),
-    fruit: FRUITS[Math.round(Math.random() * (FRUITS.length - 1))],
-  };
-}
+
