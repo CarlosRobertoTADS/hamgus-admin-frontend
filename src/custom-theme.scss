@@ -134,46 +134,46 @@ $ama-theme: mat.define-light-theme($ama-primary, $ama-accent, $ama-warn);
 @include mat.all-component-themes($ama-theme);
 
 
-mat-select.mat-select {
-  width: auto;
-  display: inline;
-  font-size: 16px;
-  font-weight: 300;
-  color: $dark-grey;
-  border: 1px solid $light-grey;
-  border-radius: 4px;
-  padding: 8px 10px;
+// mat-select.mat-select {
+//   width: auto;
+//   display: inline;
+//   font-size: 16px;
+//   font-weight: 300;
+//   color: $dark-grey;
+//   border: 1px solid $light-grey;
+//   border-radius: 4px;
+//   padding: 8px 10px;
 
-  & .mat-select-value {
-    width: auto;
-    display: inline;
-  }
+//   & .mat-select-value {
+//     width: auto;
+//     display: inline;
+//   }
 
-  & .mat-select-arrow {
-    color: $light-grey;
-    margin-right: 0;
-  }
-}
+//   & .mat-select-arrow {
+//     color: $light-grey;
+//     margin-right: 0;
+//   }
+// }
 
-.mat-option {
-  font-size: 16px;
-  height: 36px;
-  padding: 6px 16px;
-  color: $dark-grey;
+// .mat-option {
+//   font-size: 16px;
+//   height: 36px;
+//   padding: 6px 16px;
+//   color: $dark-grey;
 
-  &.mat-focus-indicator.mat-selected.mat-active {
-    background-color: $blue-white;
-    color: $dark-grey;
-  }
+//   &.mat-focus-indicator.mat-selected.mat-active {
+//     background-color: $blue-white;
+//     color: $dark-grey;
+//   }
 
-  &:hover:not(.mat-option-disabled) {
-    background-color: $blue-white;
-  }
-}
+//   &:hover:not(.mat-option-disabled) {
+//     background-color: $blue-white;
+//   }
+// }
 
-.mat-form-field-underline {
-  display: none;
-}
+// .mat-form-field-underline {
+//   display: none;
+// }
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
@@ -284,10 +284,10 @@ mat-tab-body div.mat-tab-body-content {
   overflow: hidden;
 }
 
-.mat-icon {
-  padding-right: 3px;
-  padding-bottom: 5px;
-}
+// .mat-icon {
+//   padding-right: 3px;
+//   padding-bottom: 5px;
+// }
 
 .material-icons {
   font-size: 28px;
@@ -327,4 +327,4 @@ div.apexcharts-xaxistooltip-bottom:after {
 ::-webkit-scrollbar-track-piece { background-color: $scrollbar-track-piece-color;}
 ::-webkit-scrollbar-thumb { height: 50px; background-color: $light-grey; border-radius: 36px;}
 ::-webkit-scrollbar-corner { background-color: $scrollbar-corner-color;}
-::-webkit-resizer { background-color: $dark-grey;}
+// ::-webkit-resizer { background-color: $dark-grey;}
