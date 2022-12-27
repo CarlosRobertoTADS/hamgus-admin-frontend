@@ -78,15 +78,24 @@ export class EstablishmentsComponent implements OnInit {
   }
 
   edit(id:number){
-    this.router.navigate(['detail'], {relativeTo:this.route});
+    this.router.navigate(['detail/'+ id], {relativeTo:this.route});
   }
 
   delete(id:number){
 
   }
 
-  deactivate(id:number){
-
+  deactivate(establishment:EstablishmentModel){
+    console.log(establishment);
+    if(establishment.statusActive){
+      establishment.statusActive = false;
+    }
+    else{
+      establishment.statusActive = true;
+    }
+   console.log(establishment);
+    this.establishmentService.update(establishment);
+    this.loadData();
   }
 }
 

@@ -1,0 +1,34 @@
+.select{
+    border: none;
+    text-align-last: center;
+}
+.form-case{
+    display: grid;
+    max-width: 600px;
+    text-align-last: center;
+    margin-left: inherit;
+}
+
+.button-submit{
+    margin-bottom: 50px;
+}
+
+.botao-menu{
+    margin-left: 10%;
+    margin-bottom: 1%;
+}
+
+table {
+    width: 80%;
+    margin-left: 10%;
+    margin-bottom: 10%;
+  }
+  
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+  
+  td, th {
+    width: 10%;
+  }

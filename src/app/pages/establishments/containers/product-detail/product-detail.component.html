@@ -1,0 +1,36 @@
+<app-layout>
+    <mat-toolbar class="page-header" role="heading">
+        <h1>Detalhes do produto</h1>
+    </mat-toolbar>
+    <mat-spinner *ngIf="loading"></mat-spinner>
+    <form *ngIf="!loading" class="form-case" [formGroup]="formProduct" (ngSubmit)="submit()">
+        <mat-form-field appearance="outline">
+            <mat-label>Nome do produto</mat-label>
+            <input matInput placeholder="Insira o nome do produto" formControlName="name">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Descrição</mat-label>
+            <textarea matInput placeholder="Insira a descrição do produto" formControlName="description"></textarea>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Posição no Menu</mat-label>
+            <mat-select formControlName = "categoryMenu" class="select" >
+              <mat-option *ngFor="let menuProduct of categoryMenuProduct" [value]="menuProduct.id" class="select">
+                {{menuProduct.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="fill" floatLabel="always">
+            <mat-label>Preço</mat-label>
+            <input matInput type="number" class="example-right-align" placeholder="0" formControlName="price">
+          
+          </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Ingredientes</mat-label>
+            <textarea  matInput placeholder="Insira os Ingredientes do produto" formControlName="sideDish"></textarea>
+        </mat-form-field>
+        <button mat-button mat-raised-button color="primary" type="submit" class="button-submit"
+            [disabled]="!formProduct.valid">Atualizar Produto</button>
+
+    </form>
+</app-layout>

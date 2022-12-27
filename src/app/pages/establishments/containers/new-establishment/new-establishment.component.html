@@ -14,17 +14,18 @@
         </mat-form-field>
         <mat-form-field appearance="outline">
             <mat-label>Categoria Estabelecimento</mat-label>
-            <mat-select formControlName = "typeEstablishment" class="select">
-              <mat-option value=1>Restaurante</mat-option>
-              <mat-option value=2>Farmácia</mat-option>
-              <mat-option value=3>Pet-Shop</mat-option>
+            <mat-select formControlName = "typeEstablishment" class="select" >
+              <mat-option *ngFor="let establishment of categoryEstablishment" [value]="establishment.id" class="select">
+                {{establishment.name}}
+              </mat-option>
             </mat-select>
           </mat-form-field>
           <mat-form-field appearance="outline">
-            <mat-label>Categoria Estabelecimento</mat-label>
+            <mat-label>Categoria Restaurante</mat-label>
             <mat-select formControlName = "typeRestaurant" class="select">
-              <mat-option value=1>Lanchonete</mat-option>
-              <mat-option value=2>Japonesa</mat-option>
+              <mat-option *ngFor="let restaurant of categoryRestaurant" [value]="restaurant.id" class="select">
+                {{restaurant.name}}
+              </mat-option>
             </mat-select>
           </mat-form-field>
         <mat-form-field appearance="outline">

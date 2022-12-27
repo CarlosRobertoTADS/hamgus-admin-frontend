@@ -90,8 +90,9 @@
       <ng-container matColumnDef="desativar">
         <th mat-header-cell *matHeaderCellDef> Ativar/Desativar </th>
         <td mat-cell *matCellDef="let row">
-          <button mat-icon-button class="button-action" (click)="deactivate(row.id)">
-            <mat-icon style="color:green">settings_power</mat-icon>
+          <button mat-icon-button class="button-action" (click)="deactivate(row)">
+            <mat-icon *ngIf="row.statusActive == true" style="color:green">settings_power</mat-icon>
+            <mat-icon *ngIf="row.statusActive == false" style="color:red">settings_power</mat-icon>
           </button>
         </td>
       </ng-container>
