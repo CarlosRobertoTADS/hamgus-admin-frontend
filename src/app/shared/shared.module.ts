@@ -16,7 +16,9 @@ import { FooterComponent } from './footer/footer.component';
 import { SettingsMenuComponent } from './ui-elements/settings-menu/settings-menu.component';
 import { DateMenuComponent } from './ui-elements/date-menu/date-menu.component';
 import { LayoutComponent } from './layout/layout.component';
+import { ImageComponent } from './image/image.component';
 
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,8 @@ import { LayoutComponent } from './layout/layout.component';
     FooterComponent,
     SettingsMenuComponent,
     DateMenuComponent,
-    LayoutComponent
+    LayoutComponent,
+    ImageComponent
   ],
   imports: [
     HeaderModule,
@@ -36,7 +39,8 @@ import { LayoutComponent } from './layout/layout.component';
     MatMenuModule,
     MatSelectModule,
     FormsModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatCardModule
   ],
   exports: [
     HeaderModule,
@@ -44,7 +48,8 @@ import { LayoutComponent } from './layout/layout.component';
     FooterComponent,
     SettingsMenuComponent,
     DateMenuComponent,
-    LayoutComponent
+    LayoutComponent,
+    ImageComponent
   ]
 })
 export class  SharedModule { }

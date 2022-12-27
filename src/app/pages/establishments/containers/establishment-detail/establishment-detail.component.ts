@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
@@ -8,6 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AnyTxtRecord } from 'dns';
 import { EstablishmentModel } from 'src/app/models/establishment';
 import { MenuModel } from 'src/app/models/menuModel';
+import { ImageService } from 'src/app/shared/image/services/image.service';
 import { EstablishmentsService } from '../../services/establishments.service';
 
 @Component({
@@ -27,12 +28,15 @@ export class EstablishmentDetailComponent implements OnInit {
   public categoryEstablishment = [];
   public dataSource: MatTableDataSource<MenuModel>;
   public idEstablishment;
+  public imageUploaded;
+  public timestamp;
+  public urlImage;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   displayedColumns: string[] = ['id', 'name', 'price', 'status', 'editar', 'excluir','desativar'];
+  @Input() valor: string;
 
-
-  constructor(private dialog: MatDialog, private route: ActivatedRoute, private establishmentService:EstablishmentsService, private routeNavigate:Router) { }
+  constructor(private uploadService: ImageService, private route: ActivatedRoute, private establishmentService:EstablishmentsService, private routeNavigate:Router) { }
 
   ngOnInit(): void {
     this.loadEstablishmentId();
@@ -98,7 +102,8 @@ export class EstablishmentDetailComponent implements OnInit {
       number: new FormControl(this.establishment.number, [Validators.required]),
       district: new FormControl(this.establishment.district, [Validators.required]),
       city: new FormControl(this.establishment.city, [Validators.required]),
-      state: new FormControl(this.establishment.state, [Validators.required])
+      state: new FormControl(this.establishment.state, [Validators.required]),
+      urlImage:new FormControl(this.establishment.urlImage, [Validators.required]),
     });
     this.loading = false;
   }
@@ -129,7 +134,8 @@ export class EstablishmentDetailComponent implements OnInit {
         typeEstablishment: idCategoryEstablishment.name,
         typeRestaurant: idTypeRestaurant.name,
         zipcode:this.formEstablishment.get('zipcode').value,
-        dateUpdate:this.date
+        dateUpdate:this.date,
+        urlImage: this.urlImage
     }
       console.log(this.requestEstablishment)
       this.loading = true;
@@ -146,6 +152,7 @@ export class EstablishmentDetailComponent implements OnInit {
 
   sendEstablishment(establishment){
     this.establishmentService.update(establishment);
+    this.uploadService.fileUpload(this.imageUploaded, this.timestamp);
     this.loading = false;
     this.routeNavigate.navigate(['establishments']);
   }
@@ -185,6 +192,17 @@ export class EstablishmentDetailComponent implements OnInit {
   loadPaginator(datasource){
     datasource.paginator = this.paginator;
     datasource.sort = this.sort;
+  }
+
+  receiveImage(file){
+    const urlAws = 'https://hamgus-1.s3.us-east-2.amazonaws.com/';
+    const current = new Date();
+    const timestamp = current.getTime();
+    this.imageUploaded = file;
+    this.timestamp = timestamp;
+    this.urlImage = urlAws + this.imageUploaded.name + timestamp;
+    this.formEstablishment.controls['urlImage'].setValue(this.urlImage);
+    // console.log(file);
   }
 
 }

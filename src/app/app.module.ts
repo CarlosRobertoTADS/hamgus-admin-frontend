@@ -29,11 +29,11 @@ import { EstablishmentsModule } from './pages/establishments/establishments.modu
   ],
   imports: [
     BrowserModule,
-    SharedModule,
     AuthModule,
     DashboardModule,
     BrowserAnimationsModule,
     EstablishmentsModule,
+    SharedModule,
     RouterModule,
     AppRoutingModule,
     MatCardModule,

@@ -10,7 +10,6 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatTableModule} from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
-import { EstablishmentsService } from './services/establishments.service';
 import { NewEstablishmentComponent } from './containers/new-establishment/new-establishment.component';
 import { EstablishmentDetailComponent } from './containers/establishment-detail/establishment-detail.component';
 import {MatButtonModule} from '@angular/material/button';
@@ -31,7 +30,6 @@ import {TextFieldModule} from '@angular/cdk/text-field';
     EstablishmentsRoutingModule,
     MatCardModule,
     MatToolbarModule,
-    SharedModule,
     MatPaginatorModule,
     MatFormFieldModule,
     MatTableModule,
@@ -43,8 +41,8 @@ import {TextFieldModule} from '@angular/cdk/text-field';
     ReactiveFormsModule,
     MatSelectModule,
     MatDialogModule,
-    TextFieldModule
-
+    TextFieldModule,
+    SharedModule  
   ],
   providers: [],
 

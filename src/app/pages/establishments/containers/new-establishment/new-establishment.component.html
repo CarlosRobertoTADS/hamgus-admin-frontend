@@ -3,6 +3,7 @@
         <h1>Cadastrar novo estabelecimento</h1>
     </mat-toolbar>
     <mat-spinner *ngIf="loading"></mat-spinner>
+    <app-image></app-image>
     <form *ngIf="!loading" class="form-case" [formGroup]="formEstablishment" (ngSubmit)="submit()">
         <mat-form-field appearance="outline">
             <mat-label>Nome do estabelecimento</mat-label>

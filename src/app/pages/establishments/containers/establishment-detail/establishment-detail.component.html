@@ -1,68 +1,78 @@
 <app-layout>
-    <mat-toolbar class="page-header" role="heading">
-        <h1>Detalhes do estabelecimento</h1>
-      </mat-toolbar>
+  <mat-toolbar class="page-header" role="heading">
+    <h1>Detalhes do estabelecimento</h1>
+  </mat-toolbar>
 
-      <mat-spinner *ngIf="loading"></mat-spinner>
-    <form *ngIf="!loading" class="form-case" [formGroup]="formEstablishment" (ngSubmit)="submit()">
-        <mat-form-field appearance="outline">
-            <mat-label>Nome do estabelecimento</mat-label>
-            <input matInput placeholder="Insira o nome do estabelecimento" formControlName="name">
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-            <mat-label>CNPJ ou CPF</mat-label>
-            <input type="number" matInput placeholder="Insira CNPJ ou CPF" formControlName="cnpj">
-        </mat-form-field>
-        <mat-form-field appearance="outline" >
-            <mat-label>Tipo Estabelecimento</mat-label>
-            <mat-select formControlName = "typeEstablishment" class="select">
-              <mat-option *ngFor="let establishment of categoryEstablishment" [value]="establishment.id" class="select">
-                {{establishment.name}}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-          <mat-form-field appearance="outline">
-            <mat-label>Segmento</mat-label>
-            <mat-select formControlName = "typeRestaurant" class="select" >
-              <mat-option *ngFor="let restaurant of categoryRestaurant" [value]="restaurant.id" class="select">
-                {{restaurant.name}}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-        <mat-form-field appearance="outline">
-            <mat-label>CEP</mat-label>
-            <input type="number" matInput placeholder="Insira o CEP do estabelecimento" formControlName="zipcode">
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-            <mat-label>Rua</mat-label>
-            <input matInput placeholder="Insira a rua do estabelecimento" formControlName="street">
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-            <mat-label>Número</mat-label>
-            <input type="number" matInput placeholder="Insira o número do estabelecimento" formControlName="number">
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-            <mat-label>Bairro</mat-label>
-            <input matInput placeholder="Insira o bairro do estabelecimento" formControlName="district">
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-            <mat-label>Cidade</mat-label>
-            <input matInput placeholder="Insira a cidade do estabelecimento" formControlName="city">
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-            <mat-label>Estado</mat-label>
-            <input matInput placeholder="Insira o estado do estabelecimento" formControlName="state">
-        </mat-form-field>
-        <button mat-button mat-raised-button color="primary" type="submit" class="button-submit"
-            [disabled]="!formEstablishment.valid">Atualizar Estabelecimento</button>
+  <mat-spinner *ngIf="loading"></mat-spinner>
+  <div *ngIf="!loading" class="form-case">
+    <app-image (evento)="receiveImage($event)" valor="{{establishment.urlImage}}"></app-image>
+
+
+    <form  [formGroup]="formEstablishment" (ngSubmit)="submit()">
+
+      <mat-form-field appearance="outline">
+        <mat-label>Logotipo</mat-label>
+        <input matInput placeholder="nome de sua imagem" formControlName="urlImage" readonly>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Nome do estabelecimento</mat-label>
+        <input matInput placeholder="Insira o nome do estabelecimento" formControlName="name">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>CNPJ ou CPF</mat-label>
+        <input type="number" matInput placeholder="Insira CNPJ ou CPF" formControlName="cnpj">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Tipo Estabelecimento</mat-label>
+        <mat-select formControlName="typeEstablishment" class="select">
+          <mat-option *ngFor="let establishment of categoryEstablishment" [value]="establishment.id" class="select">
+            {{establishment.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Segmento</mat-label>
+        <mat-select formControlName="typeRestaurant" class="select">
+          <mat-option *ngFor="let restaurant of categoryRestaurant" [value]="restaurant.id" class="select">
+            {{restaurant.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>CEP</mat-label>
+        <input type="number" matInput placeholder="Insira o CEP do estabelecimento" formControlName="zipcode">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Rua</mat-label>
+        <input matInput placeholder="Insira a rua do estabelecimento" formControlName="street">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Número</mat-label>
+        <input type="number" matInput placeholder="Insira o número do estabelecimento" formControlName="number">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Bairro</mat-label>
+        <input matInput placeholder="Insira o bairro do estabelecimento" formControlName="district">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Cidade</mat-label>
+        <input matInput placeholder="Insira a cidade do estabelecimento" formControlName="city">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Estado</mat-label>
+        <input matInput placeholder="Insira o estado do estabelecimento" formControlName="state">
+      </mat-form-field>
+      <button mat-button mat-raised-button color="primary" type="submit" class="button-submit"
+        [disabled]="!formEstablishment.valid">Atualizar Estabelecimento</button>
 
     </form>
-    <mat-toolbar class="page-header" role="heading">
-      <h1>Produtos</h1>
-    </mat-toolbar>
-    <button mat-raised-button color="primary" class="botao-menu" (click)="submitMenu()">Cadastrar novo produto</button>
+  </div>
+  <mat-toolbar class="page-header" role="heading">
+    <h1>Produtos</h1>
+  </mat-toolbar>
+  <button mat-raised-button color="primary" class="botao-menu" (click)="submitMenu()">Cadastrar novo produto</button>
 
-<div id="tabela">
+  <div id="tabela">
     <table id="basic-table" class="mat-elevation-z8" mat-table [dataSource]="dataSource" matSort>
 
       <!-- Menu Column -->
@@ -147,7 +157,7 @@
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
-   
+
     </table>
   </div>
 </app-layout>
