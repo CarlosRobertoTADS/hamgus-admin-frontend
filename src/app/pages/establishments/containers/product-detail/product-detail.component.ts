@@ -36,9 +36,13 @@ export class ProductDetailComponent implements OnInit {
   public loadProductId() {
     this.loading = true;
     this.establishmentService.getIdMenu(this.idProduct, this.idEstablishment).subscribe((resp: MenuModel) => {
+      console.log(this.categoryMenuProduct)
       this.product = resp;
       console.log(resp)
+   
+      console.log(this.product.categoryMenu)
       this.idCategoryMenuProduct = this.categoryMenuProduct.find(f => f.name === this.product.categoryMenu);
+      console.log(this.idCategoryMenuProduct)
     })
   }
 

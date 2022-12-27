@@ -9,11 +9,11 @@
             <input matInput placeholder="Insira o nome do estabelecimento" formControlName="name">
         </mat-form-field>
         <mat-form-field appearance="outline">
-            <mat-label>CNPJ</mat-label>
-            <input type="number" matInput placeholder="Insira o nome do estabelecimento" formControlName="cnpj">
+            <mat-label>CNPJ ou CPF</mat-label>
+            <input type="number" matInput placeholder="Insira CNPJ ou CPF" formControlName="cnpj">
         </mat-form-field>
         <mat-form-field appearance="outline">
-            <mat-label>Categoria Estabelecimento</mat-label>
+            <mat-label>Tipo Estabelecimento</mat-label>
             <mat-select formControlName = "typeEstablishment" class="select" >
               <mat-option *ngFor="let establishment of categoryEstablishment" [value]="establishment.id" class="select">
                 {{establishment.name}}
@@ -21,7 +21,7 @@
             </mat-select>
           </mat-form-field>
           <mat-form-field appearance="outline">
-            <mat-label>Categoria Restaurante</mat-label>
+            <mat-label>Segmento</mat-label>
             <mat-select formControlName = "typeRestaurant" class="select">
               <mat-option *ngFor="let restaurant of categoryRestaurant" [value]="restaurant.id" class="select">
                 {{restaurant.name}}
