@@ -47,16 +47,19 @@ export class NewEstablishmentComponent implements OnInit {
 
   public loadCategoryEstablishment(){
     this.categoryEstablishment = [
-      {'name':'Restaurante', 'id': 1},
+      {'name':'Comida', 'id': 1},
       {'name':'Farmácia', 'id': 2},
-      {'name':'Pet-Shop', 'id': 3}
+      {'name':'Pet-Shop', 'id': 3},
+      {'name':'Mercado', 'id': 4}
     ];
   }
 
   public loadCategoryRestaurant(){
     this.categoryRestaurant = [
       {'name':'Lanchonete', 'id': 1},
-      {'name':'Japonesa', 'id': 2}
+      {'name':'Japonesa', 'id': 2},
+      {'name':'Restaurante', 'id': 3},
+      {'name':'Doceria', 'id': 4}
     ];
     
     
