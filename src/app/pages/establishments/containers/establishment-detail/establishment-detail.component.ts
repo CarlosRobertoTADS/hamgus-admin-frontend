@@ -1,11 +1,9 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AnyTxtRecord } from 'dns';
 import { EstablishmentModel } from 'src/app/models/establishment';
 import { MenuModel } from 'src/app/models/menuModel';
 import { ImageService } from 'src/app/shared/image/services/image.service';
@@ -31,6 +29,7 @@ export class EstablishmentDetailComponent implements OnInit {
   public imageUploaded;
   public timestamp;
   public urlImage;
+  public urlImageDefault;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   displayedColumns: string[] = ['id', 'name', 'price', 'status', 'editar', 'excluir','desativar'];
@@ -39,6 +38,7 @@ export class EstablishmentDetailComponent implements OnInit {
   constructor(private uploadService: ImageService, private route: ActivatedRoute, private establishmentService:EstablishmentsService, private routeNavigate:Router) { }
 
   ngOnInit(): void {
+    this.urlImageDefault = 'https://hamgus-establishments-assets.s3.us-east-2.amazonaws.com/default-logotipo-establishment.jpg';
     this.loadEstablishmentId();
     this.loadCategoryEstablishment();
     this.loadCategoryRestaurant();
@@ -54,6 +54,10 @@ export class EstablishmentDetailComponent implements OnInit {
     this.loading = true;
     this.establishmentService.getId(this.idEstablishment).subscribe((resp:EstablishmentModel)=>{
       this.establishment = resp;
+      if(this.establishment && this.establishment.urlImage !== '' && this.establishment.urlImage !== null && this.establishment.urlImage !== undefined){
+        this.urlImageDefault = this.establishment.urlImage;
+      }
+      
     })
   }
 
@@ -152,7 +156,7 @@ export class EstablishmentDetailComponent implements OnInit {
 
   sendEstablishment(establishment){
     this.establishmentService.update(establishment);
-    this.uploadService.fileUpload(this.imageUploaded, this.timestamp);
+    this.uploadService.fileUploadEstablishment(this.imageUploaded, this.timestamp);
     this.loading = false;
     this.routeNavigate.navigate(['establishments']);
   }
@@ -195,7 +199,7 @@ export class EstablishmentDetailComponent implements OnInit {
   }
 
   receiveImage(file){
-    const urlAws = 'https://hamgus-1.s3.us-east-2.amazonaws.com/';
+    const urlAws = 'https://hamgus-establishments-assets.s3.us-east-2.amazonaws.com/';
     const current = new Date();
     const timestamp = current.getTime();
     this.imageUploaded = file;

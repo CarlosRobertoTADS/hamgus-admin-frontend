@@ -3,9 +3,14 @@
         <h1>Cadastrar novo estabelecimento</h1>
     </mat-toolbar>
     <mat-spinner *ngIf="loading"></mat-spinner>
-    <app-image></app-image>
-    <form *ngIf="!loading" class="form-case" [formGroup]="formEstablishment" (ngSubmit)="submit()">
-        <mat-form-field appearance="outline">
+    <div *ngIf="!loading" class="form-case">
+      <app-image (evento)="receiveImage($event)" ></app-image>
+    <form [formGroup]="formEstablishment" (ngSubmit)="submit()">
+      <mat-form-field appearance="outline">
+        <mat-label>Logotipo</mat-label>
+        <input matInput placeholder="nome de sua imagem" formControlName="urlImage" readonly>
+      </mat-form-field>  
+      <mat-form-field appearance="outline">
             <mat-label>Nome do estabelecimento</mat-label>
             <input matInput placeholder="Insira o nome do estabelecimento" formControlName="name">
         </mat-form-field>
@@ -57,4 +62,5 @@
             [disabled]="!formEstablishment.valid">Cadastrar Estabelecimento</button>
 
     </form>
+    </div>
 </app-layout>

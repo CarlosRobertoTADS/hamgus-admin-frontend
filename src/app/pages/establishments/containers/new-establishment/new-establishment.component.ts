@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EstablishmentModel } from 'src/app/models/establishment';
+import { ImageService } from 'src/app/shared/image/services/image.service';
 import { EstablishmentsService } from '../../services/establishments.service';
 
 @Component({
@@ -17,7 +18,11 @@ export class NewEstablishmentComponent implements OnInit {
   public date:any;
   public categoryRestaurant = [];
   public categoryEstablishment = [];
-  constructor(private establishmentService: EstablishmentsService, private router:Router, private route:ActivatedRoute) { }
+  public imageUploaded;
+  public timestamp;
+  public urlImage;
+  public imagePreview;
+  constructor(private uploadService: ImageService, private establishmentService: EstablishmentsService, private router:Router, private route:ActivatedRoute) { }
 
   ngOnInit(): void {
 
@@ -34,7 +39,8 @@ export class NewEstablishmentComponent implements OnInit {
       number: new FormControl('', [Validators.required]),
       district: new FormControl('', [Validators.required]),
       city: new FormControl('', [Validators.required]),
-      state: new FormControl('', [Validators.required])
+      state: new FormControl('', [Validators.required]),
+      urlImage:new FormControl('', [Validators.required])
     });
 
   }
@@ -82,7 +88,7 @@ export class NewEstablishmentComponent implements OnInit {
         typeEstablishment:idCategoryEstablishment.name,
         typeRestaurant:idTypeRestaurant.name,
         uf:"",
-        urlImage:"",
+        urlImage:this.urlImage,
         zipcode:this.formEstablishment.get('zipcode').value,
         dateCreated:this.date,
         dateUpdate:this.date
@@ -101,8 +107,20 @@ export class NewEstablishmentComponent implements OnInit {
 
   sendEstablishment(establishment){
     this.establishmentService.create(establishment);
+    this.uploadService.fileUploadEstablishment(this.imageUploaded, this.timestamp);
     this.loading = false;
     this.router.navigate(['establishments']);
+  }
+
+  receiveImage(file){
+    const urlAws = 'https://hamgus-establishments-assets.s3.us-east-2.amazonaws.com/';
+    const current = new Date();
+    const timestamp = current.getTime();
+    this.imageUploaded = file;
+    this.timestamp = timestamp;
+    this.urlImage = urlAws + this.imageUploaded.name + timestamp;
+    this.formEstablishment.controls['urlImage'].setValue(this.urlImage);
+    // console.log(file);
   }
 
 }

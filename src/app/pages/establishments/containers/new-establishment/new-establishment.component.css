@@ -12,3 +12,8 @@
 .button-submit{
     margin-bottom: 50px;
 }
+
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
