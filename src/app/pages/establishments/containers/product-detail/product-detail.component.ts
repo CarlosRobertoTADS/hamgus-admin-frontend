@@ -88,7 +88,7 @@ export class ProductDetailComponent implements OnInit {
         name: this.formProduct.get('name').value,
         description: this.formProduct.get('description').value,
         categoryMenu:idCategoryMenuProduct.name,
-        urlImage:this.urlImage,
+        urlImage:this.formProduct.get('urlImage').value,
         dateUpdate:this.date
     }
       console.log(this.requestProduct)
@@ -108,7 +108,9 @@ export class ProductDetailComponent implements OnInit {
 
   sendProduct(product:MenuModel){
     this.establishmentService.updateProduct(product, this.idEstablishment);
-    this.uploadService.fileUploadProducts(this.imageUploaded, this.timestamp);
+    if(this.imageUploaded != '' && this.imageUploaded != null && this.imageUploaded != undefined){
+      this.uploadService.fileUploadProducts(this.imageUploaded, this.timestamp);
+    };
     this.loading = false;
     this.router.navigate(['establishments/detail/'+ this.idEstablishment]);
   }

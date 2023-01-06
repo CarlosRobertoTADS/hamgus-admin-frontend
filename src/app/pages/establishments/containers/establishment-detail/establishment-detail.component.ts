@@ -142,7 +142,7 @@ export class EstablishmentDetailComponent implements OnInit {
         typeRestaurant: idTypeRestaurant.name,
         zipcode:this.formEstablishment.get('zipcode').value,
         dateUpdate:this.date,
-        urlImage: this.urlImage
+        urlImage: this.formEstablishment.get('urlImage').value
     }
       console.log(this.requestEstablishment)
       this.loading = true;
@@ -159,7 +159,9 @@ export class EstablishmentDetailComponent implements OnInit {
 
   sendEstablishment(establishment){
     this.establishmentService.update(establishment);
-    this.uploadService.fileUploadEstablishment(this.imageUploaded, this.timestamp);
+    if(this.imageUploaded != '' && this.imageUploaded != null && this.imageUploaded != undefined){
+      this.uploadService.fileUploadEstablishment(this.imageUploaded, this.timestamp);
+    };
     this.loading = false;
     this.routeNavigate.navigate(['establishments']);
   }
