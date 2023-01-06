@@ -28,7 +28,7 @@ export class NewProductComponent implements OnInit {
     this.idEstablishment = this.route.snapshot.paramMap.get('id');
     this,this.loadCategoryMenu();
     this.formProduct = new FormGroup({
-      name: new FormControl('', [Validators.required]),
+      name: new FormControl('', [Validators.required, Validators.maxLength(32)]),
       categoryMenu: new FormControl('', [Validators.required]),
       description: new FormControl('', [Validators.required]),
       price: new FormControl('', [Validators.required]),

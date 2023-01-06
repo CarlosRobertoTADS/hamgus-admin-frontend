@@ -62,7 +62,7 @@ export class ProductDetailComponent implements OnInit {
 
   public loadForm() {
     this.formProduct = new FormGroup({
-      name: new FormControl(this.product.name, [Validators.required]),
+      name: new FormControl(this.product.name, [Validators.required, Validators.maxLength(32)]),
       price: new FormControl(this.product.price, [Validators.required]),
       categoryMenu: new FormControl(this.idCategoryMenuProduct.id, [Validators.required]),
       sideDish: new FormControl(this.product.sideDish, [Validators.required]),
